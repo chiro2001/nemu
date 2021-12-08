@@ -80,71 +80,71 @@ static inline make_EHelper(remu) {
   print_asm_template3(remu);
 }
 
-static inline make_EHelper(mulw) {
-  rtl_mulw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(mulw);
-}
+// static inline make_EHelper(mulw) {
+//   rtl_mulw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(mulw);
+// }
 
-static inline make_EHelper(divw) {
-#if 0
-  rtl_sext(s, s0, dsrc1, 4);
-  rtl_sext(s, s1, dsrc2, 4);
-  //if (*s1 == 0) {
-  //  rtl_li(s, s0, ~0lu);
-  //} else if (*s0 == 0x80000000 && *s1 == -1) {
-  //  //rtl_mv(s, s0, s0);
-  //} else {
-    rtl_idiv_q(s, s0, s0, s1);
-  //}
-  rtl_sext(s, ddest, s0, 4);
-#endif
-  rtl_divw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(divw);
-}
+// static inline make_EHelper(divw) {
+// #if 0
+//   rtl_sext(s, s0, dsrc1, 4);
+//   rtl_sext(s, s1, dsrc2, 4);
+//   //if (*s1 == 0) {
+//   //  rtl_li(s, s0, ~0lu);
+//   //} else if (*s0 == 0x80000000 && *s1 == -1) {
+//   //  //rtl_mv(s, s0, s0);
+//   //} else {
+//     rtl_idiv_q(s, s0, s0, s1);
+//   //}
+//   rtl_sext(s, ddest, s0, 4);
+// #endif
+//   rtl_divw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(divw);
+// }
 
-static inline make_EHelper(remw) {
-#if 0
-  rtl_sext(s, s0, dsrc1, 4);
-  rtl_sext(s, s1, dsrc2, 4);
-  //if (*s1 == 0) {
-  //  //rtl_mv(s, s0, s0);
-  //} else if (*s0 == 0x80000000 && *s1 == -1) {
-  //  rtl_mv(s, s0, rz);
-  //} else {
-    rtl_idiv_r(s, s0, s0, s1);
-  //}
-  rtl_sext(s, ddest, s0, 4);
-#endif
-  rtl_remw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(remw);
-}
+// static inline make_EHelper(remw) {
+// #if 0
+//   rtl_sext(s, s0, dsrc1, 4);
+//   rtl_sext(s, s1, dsrc2, 4);
+//   //if (*s1 == 0) {
+//   //  //rtl_mv(s, s0, s0);
+//   //} else if (*s0 == 0x80000000 && *s1 == -1) {
+//   //  rtl_mv(s, s0, rz);
+//   //} else {
+//     rtl_idiv_r(s, s0, s0, s1);
+//   //}
+//   rtl_sext(s, ddest, s0, 4);
+// #endif
+//   rtl_remw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(remw);
+// }
 
-static inline make_EHelper(divuw) {
-#if 0
-  rtl_zext(s, s0, dsrc1, 4);
-  rtl_zext(s, s1, dsrc2, 4);
-  //if (*s1 == 0) {
-  //  rtl_li(s, s0, ~0lu);
-  //} else {
-    rtl_div_q(s, s0, s0, s1);
-  //}
-  rtl_sext(s, ddest, s0, 4);
-#endif
-  rtl_divuw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(divuw);
-}
+// static inline make_EHelper(divuw) {
+// #if 0
+//   rtl_zext(s, s0, dsrc1, 4);
+//   rtl_zext(s, s1, dsrc2, 4);
+//   //if (*s1 == 0) {
+//   //  rtl_li(s, s0, ~0lu);
+//   //} else {
+//     rtl_div_q(s, s0, s0, s1);
+//   //}
+//   rtl_sext(s, ddest, s0, 4);
+// #endif
+//   rtl_divuw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(divuw);
+// }
 
-static inline make_EHelper(remuw) {
-#if 0
-  rtl_zext(s, s0, dsrc1, 4);
-  rtl_zext(s, s1, dsrc2, 4);
-  //if (*s1 == 0) {
-  //  //rtl_mv(s, s0, s0);
-  //} else {
-    rtl_div_r(s, s0, s0, s1);
-  //}
-  rtl_sext(s, ddest, s0, 4);
-#endif
-  rtl_remuw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(remuw);
-}
+// static inline make_EHelper(remuw) {
+// #if 0
+//   rtl_zext(s, s0, dsrc1, 4);
+//   rtl_zext(s, s1, dsrc2, 4);
+//   //if (*s1 == 0) {
+//   //  //rtl_mv(s, s0, s0);
+//   //} else {
+//     rtl_div_r(s, s0, s0, s1);
+//   //}
+//   rtl_sext(s, ddest, s0, 4);
+// #endif
+//   rtl_remuw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(remuw);
+// }

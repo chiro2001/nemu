@@ -115,55 +115,55 @@ static inline make_EHelper(lui) {
   print_asm("lui " FMT_WORD ",%s", *s0, id_dest->str);
 }
 
-static inline make_EHelper(addw) {
-  rtl_addw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(addw);
-}
+// static inline make_EHelper(addw) {
+//   rtl_addiw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(addw);
+// }
 
-static inline make_EHelper(subw) {
-  rtl_subw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(subw);
-}
+// static inline make_EHelper(subw) {
+//   rtl_subw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(subw);
+// }
 
-static inline make_EHelper(sllw) {
-  rtl_shlw(s, ddest, dsrc1, dsrc2);
-  print_asm_template3(sllw);
-}
+// static inline make_EHelper(sllw) {
+//   rtl_shlw(s, ddest, dsrc1, dsrc2);
+//   print_asm_template3(sllw);
+// }
 
-static inline make_EHelper(srlw) {
-  assert((s->isa.instr.r.funct7 & 0x1) == 0);
-  if (s->isa.instr.r.funct7 == 32) {
-    rtl_sarw(s, ddest, dsrc1, dsrc2);
-    print_asm_template3(sraw);
-  }
-  else {
-    rtl_shrw(s, ddest, dsrc1, dsrc2);
-    print_asm_template3(srlw);
-  }
-}
+// static inline make_EHelper(srlw) {
+//   assert((s->isa.instr.r.funct7 & 0x1) == 0);
+//   if (s->isa.instr.r.funct7 == 32) {
+//     rtl_sarw(s, ddest, dsrc1, dsrc2);
+//     print_asm_template3(sraw);
+//   }
+//   else {
+//     rtl_shrw(s, ddest, dsrc1, dsrc2);
+//     print_asm_template3(srlw);
+//   }
+// }
 
-static inline make_EHelper(sraw) {
-  exec_srlw(s);
-}
+// static inline make_EHelper(sraw) {
+//   exec_srlw(s);
+// }
 
-static inline make_EHelper(addiw) {
-  rtl_addiw(s, ddest, dsrc1, id_src2->imm);
-  print_asm_template3(addiw);
-}
+// static inline make_EHelper(addiw) {
+//   rtl_addiw(s, ddest, dsrc1, id_src2->imm);
+//   print_asm_template3(addiw);
+// }
 
-static inline make_EHelper(slliw) {
-  rtl_shliw(s, ddest, dsrc1, id_src2->imm);
-  print_asm_template3(slliw);
-}
+// static inline make_EHelper(slliw) {
+//   rtl_shliw(s, ddest, dsrc1, id_src2->imm);
+//   print_asm_template3(slliw);
+// }
 
-static inline make_EHelper(srliw) {
-  assert((s->isa.instr.r.funct7 & 0x1) == 0);
-  if (s->isa.instr.r.funct7 == 32) {
-    rtl_sariw(s, ddest, dsrc1, id_src2->imm);
-    print_asm_template3(sraiw);
-  }
-  else {
-    rtl_shriw(s, ddest, dsrc1, id_src2->imm);
-    print_asm_template3(srliw);
-  }
-}
+// static inline make_EHelper(srliw) {
+//   assert((s->isa.instr.r.funct7 & 0x1) == 0);
+//   if (s->isa.instr.r.funct7 == 32) {
+//     rtl_sariw(s, ddest, dsrc1, id_src2->imm);
+//     print_asm_template3(sraiw);
+//   }
+//   else {
+//     rtl_shriw(s, ddest, dsrc1, id_src2->imm);
+//     print_asm_template3(srliw);
+//   }
+// }
