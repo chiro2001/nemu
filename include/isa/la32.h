@@ -19,8 +19,8 @@ typedef struct {
   } gpr[32];
 
   uint32_t pc;
-  uint64_t mstatus, mcause, mepc;
-  uint64_t sstatus, scause, sepc;
+  uint32_t mstatus, mcause, mepc;
+  uint32_t sstatus, scause, sepc;
 
   uint8_t mode;
 
@@ -28,7 +28,7 @@ typedef struct {
   int mem_exception;
 
   // for LR/SC
-  uint64_t lr_addr;
+  uint32_t lr_addr;
 
   bool INTR;
 } la32_CPU_state;
