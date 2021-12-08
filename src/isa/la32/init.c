@@ -1,8 +1,7 @@
 #include <isa.h>
 #include <memory/paddr.h>
+#include "local-include/csr.h"
 
-// this is not consistent with uint8_t
-// but it is ok since we do not access the array directly
 static const uint32_t img [] = {
   0x800002b7,  // lui t0,0x80000
   0x0002a023,  // sw  zero,0(t0)
@@ -10,18 +9,28 @@ static const uint32_t img [] = {
   0x0000006b,  // nemu_trap
 };
 
-static void restart() {
-  /* Set the initial program counter. */
-  cpu.pc = RESET_VECTOR;
+void init_clint(void);
 
-  /* The zero register is always 0. */
+void init_isa(void) {
   cpu.gpr[0]._32 = 0;
-}
+  cpu.pc = PMEM_BASE + IMAGE_START;
 
-void init_isa() {
-  /* Load built-in image. */
-  memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
+  cpu.mode = MODE_M;
+#ifndef __DIFF_REF_QEMU__
+  // QEMU seems to initialize mstatus with 0
+  mstatus->val = 0x00001800;
+#endif
 
-  /* Initialize this virtual computer system. */
-  restart();
+#define ext(e) (1 << ((e) - 'a'))
+  misa->extensions = ext('i') | ext('m') | ext('a') | ext('c') | ext('s') | ext('u');
+#ifdef __DIFF_REF_QEMU__
+  misa->extensions |= ext('d') | ext('f');
+#endif
+  misa->mxl = 2; // XLEN = 64
+
+  memcpy(guest_to_host(IMAGE_START), img, sizeof(img));
+
+  init_clint();
+  extern void init_sdcard();
+  init_sdcard();
 }
